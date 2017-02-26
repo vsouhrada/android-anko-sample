@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Android Anko Sample</string>
+    <string name="sign_in_username">Username</string>
+    <string name="signIn_password">Password</string>
+    <string name="signIn_button">Sign In</string>
 </resources>
