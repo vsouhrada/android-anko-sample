@@ -38,13 +38,12 @@ dependencies {
 
     // Support
     compile "com.android.support:appcompat-v7:$support_version"
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta5'
     // Kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
     // Anko
     compile "org.jetbrains.anko:anko-sdk15:$anko_version"
     compile "org.jetbrains.anko:anko-support-v4:$anko_version"
-    compile 'org.jetbrains.anko:anko-appcompat-v7:0.9.1'
+    compile "org.jetbrains.anko:anko-appcompat-v7:$anko_version"
 
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'

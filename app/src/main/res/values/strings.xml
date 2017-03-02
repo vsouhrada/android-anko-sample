@@ -3,4 +3,7 @@
     <string name="sign_in_username">Username</string>
     <string name="signIn_password">Password</string>
     <string name="signIn_button">Sign In</string>
+    <string name="sigIn_alert_invalid_user_title">Sign In Failed!</string>
+    <string name="sigIn_alert_invalid_user_message">Invalid username or password.</string>
+    <string name="dialog_button_close">Close</string>
 </resources>
