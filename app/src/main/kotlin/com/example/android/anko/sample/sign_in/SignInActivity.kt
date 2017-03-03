@@ -5,7 +5,10 @@ import android.support.v7.app.AppCompatActivity
 import com.example.android.anko.sample.sign_in.bl.ISignInBL
 import com.example.android.anko.sample.sign_in.bl.SignInBL
 import com.example.android.anko.sample.sign_in.model.AuthCredentials
-import org.jetbrains.anko.*
+import org.jetbrains.anko.activityUiThread
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.setContentView
+import org.jetbrains.anko.toast
 
 class SignInActivity : AppCompatActivity() {
 
