@@ -6,4 +6,6 @@
     <string name="sigIn_alert_invalid_user_title">Sign In Failed!</string>
     <string name="sigIn_alert_invalid_user_message">Invalid username or password.</string>
     <string name="dialog_button_close">Close</string>
+    <string name="sigIn_alert_access_denied_title">Access Denied</string>
+    <string name="sigIn_alert_access_denied_msg">You do not have permission to access this application!</string>
 </resources>

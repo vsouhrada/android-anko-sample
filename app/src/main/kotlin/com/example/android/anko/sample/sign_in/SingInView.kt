@@ -11,7 +11,11 @@ import org.jetbrains.anko.*
  */
 class SingInView : AnkoComponent<SignInActivity> {
 
+  private lateinit var ankoContext: AnkoContext<SignInActivity>
+
   override fun createView(ui: AnkoContext<SignInActivity>) = with(ui) {
+    ankoContext = ui
+
     verticalLayout {
       lparams(width = matchParent, height = matchParent)
 
@@ -35,32 +39,34 @@ class SingInView : AnkoComponent<SignInActivity> {
         textResource = R.string.signIn_button
 
         onClick {
-          handleOnSignInButtonPressed(
-                  ui = ui,
-                  username = username.text.toString(),
-                  password = password.text.toString())
+          handleOnSignInButtonPressed(username = username.text.toString(), password = password.text.toString())
         }
       }
     }
   }
 
-  private fun handleOnSignInButtonPressed(ui: AnkoContext<SignInActivity>, username: String, password: String) {
-    if (username.isBlank() or password.isBlank()) {
-      with(ui) {
+  private fun handleOnSignInButtonPressed(username: String, password: String) {
+    with(ankoContext) {
+      if (username.isBlank() or password.isBlank()) {
         alert(title = R.string.sigIn_alert_invalid_user_title,
                 message = R.string.sigIn_alert_invalid_user_message) {
 
           positiveButton(R.string.dialog_button_close) {}
         }.show()
+      } else {
+        owner.authorizeUser(username, password)
       }
-    } else {
-      ui.owner.authorizeUser(username, password)
     }
-
   }
 
   fun showAccessDeniedAlertDialog() {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    with(ankoContext) {
+      alert(title = R.string.sigIn_alert_access_denied_title,
+              message = R.string.sigIn_alert_access_denied_msg) {
+
+        positiveButton(R.string.dialog_button_close) {}
+      }.show()
+    }
   }
 
 }
