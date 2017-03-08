@@ -3,4 +3,5 @@
     <item name="usernameEditText" type="id" />
     <item name="passwordEditText" type="id" />
     <item name="signIn_button" type="id"/>
+    <item name="formLogin" type="id"/>
 </resources>

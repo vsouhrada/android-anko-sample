@@ -1,5 +1,8 @@
 package com.example.android.anko.sample.sign_in
 
+import android.os.Build
+import android.support.v4.content.ContextCompat
+import android.view.Gravity
 import android.widget.EditText
 import com.example.android.anko.sample.R
 import org.jetbrains.anko.*
@@ -18,33 +21,56 @@ class SingInView : AnkoComponent<SignInActivity> {
         ankoContext = ui
 
         verticalLayout {
-            padding = dip(20)
+            this.gravity = Gravity.CENTER
             lparams(width = matchParent, height = matchParent)
 
-            val username = editText {
+            scrollView {
                 lparams(width = matchParent, height = wrapContent)
-                id = R.id.usernameEditText
-                hintResource = R.string.sign_in_username
-            }
 
-            val password = editText {
-                lparams(width = matchParent, height = wrapContent)
-                id = R.id.passwordEditText
-                hintResource = R.string.signIn_password
-            }
+                verticalLayout {
+                    lparams(width = matchParent, height = matchParent)
 
-            button {
-                lparams(width = matchParent, height = wrapContent)
-                id = R.id.signIn_button
-                textResource = R.string.signIn_button
+                    verticalLayout {
+                        id = R.id.formLogin
+                        gravity = Gravity.CENTER
+                        padding = dip(20)
+                        lparams(width = dip(300), height = matchParent) {
+                            this.gravity = Gravity.CENTER
+                            // API >= 16
+                            doFromSdk(version = Build.VERSION_CODES.JELLY_BEAN) {
+                                background = ContextCompat.getDrawable(ctx, android.R.color.white)
+                            }
+                            clipToPadding = false
+                            bottomMargin = dip(16)
+                        }
 
-                onClick {
-                    handleOnSignInButtonPressed(username = username.text.toString(), password = password.text.toString())
+                        val username = editText {
+                            lparams(width = matchParent, height = wrapContent)
+                            id = R.id.usernameEditText
+                            hintResource = R.string.sign_in_username
+                        }
+
+                        val password = editText {
+                            lparams(width = matchParent, height = wrapContent)
+                            id = R.id.passwordEditText
+                            hintResource = R.string.signIn_password
+                        }
+
+                        button {
+                            lparams(width = matchParent, height = wrapContent)
+                            id = R.id.signIn_button
+                            textResource = R.string.signIn_button
+
+                            onClick {
+                                handleOnSignInButtonPressed(username = username.text.toString(), password = password.text.toString())
+                            }
+                        }
+                    }.applyRecursively { view ->
+                        when (view) {
+                            is EditText -> view.textSize = 24f
+                        }
+                    }
                 }
-            }
-        }.applyRecursively { view ->
-            when (view) {
-                is EditText -> view.textSize = 24f
             }
         }
     }
