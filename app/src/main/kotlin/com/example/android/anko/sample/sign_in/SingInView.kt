@@ -4,6 +4,7 @@ import android.os.Build
 import android.support.v4.content.ContextCompat
 import android.view.Gravity
 import android.widget.EditText
+import android.widget.LinearLayout
 import com.example.android.anko.sample.R
 import org.jetbrains.anko.*
 
@@ -25,24 +26,13 @@ class SingInView : AnkoComponent<SignInActivity> {
             lparams(width = matchParent, height = matchParent)
 
             scrollView {
-                lparams(width = matchParent, height = wrapContent)
 
                 verticalLayout {
-                    lparams(width = matchParent, height = matchParent)
 
                     verticalLayout {
                         id = R.id.formLogin
                         gravity = Gravity.CENTER
                         padding = dip(20)
-                        lparams(width = dip(300), height = matchParent) {
-                            this.gravity = Gravity.CENTER
-                            // API >= 16
-                            doFromSdk(version = Build.VERSION_CODES.JELLY_BEAN) {
-                                background = ContextCompat.getDrawable(ctx, android.R.color.white)
-                            }
-                            clipToPadding = false
-                            bottomMargin = dip(16)
-                        }
 
                         val username = editText {
                             lparams(width = matchParent, height = wrapContent)
@@ -69,9 +59,19 @@ class SingInView : AnkoComponent<SignInActivity> {
                         when (view) {
                             is EditText -> view.textSize = 24f
                         }
+                    }.lparams(width = dip(300), height = matchParent) {
+                        this.gravity = Gravity.CENTER
+                        // API >= 16
+                        doFromSdk(version = Build.VERSION_CODES.JELLY_BEAN) {
+                            background = ContextCompat.getDrawable(ctx, android.R.color.white)
+                        }
+                        clipToPadding = false
+                        bottomMargin = dip(16)
                     }
-                }
-            }
+                }.lparams(width = matchParent, height = matchParent)
+
+            }.lparams(width = matchParent, height = wrapContent)
+
         }
     }
 
