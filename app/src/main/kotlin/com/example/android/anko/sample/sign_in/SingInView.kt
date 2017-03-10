@@ -11,30 +11,30 @@ import org.jetbrains.anko.*
  */
 class SingInView : AnkoComponent<SignInActivity> {
 
-  override fun createView(ui: AnkoContext<SignInActivity>) = with(ui) {
-    verticalLayout {
-      lparams(width  = matchParent, height = matchParent)
+    override fun createView(ui: AnkoContext<SignInActivity>) = with(ui) {
+        verticalLayout {
+            lparams(width = matchParent, height = matchParent)
 
-      editText {
-        lparams(width = matchParent, height = wrapContent)
-        id = R.id.usernameEditText
-        hintResource = R.string.sign_in_username
-        textSize = 24f
-      }
+            editText {
+                id = R.id.usernameEditText
+                hintResource = R.string.sign_in_username
+                textSize = 24f
 
-      editText {
-        lparams(width = matchParent, height = wrapContent)
-        id = R.id.passwordEditText
-        hintResource = R.string.signIn_password
-        textSize = 24f
-      }
+            }.lparams(width = matchParent, height = wrapContent)
 
-      button {
-        lparams(width = matchParent, height = wrapContent)
-        id = R.id.signIn_button
-        textResource = R.string.signIn_button
-      }
+            editText {
+                id = R.id.passwordEditText
+                hintResource = R.string.signIn_password
+                textSize = 24f
+
+            }.lparams(width = matchParent, height = wrapContent)
+
+            button {
+                id = R.id.signIn_button
+                textResource = R.string.signIn_button
+
+            }.lparams(width = matchParent, height = wrapContent)
+        }
     }
-  }
 
 }
