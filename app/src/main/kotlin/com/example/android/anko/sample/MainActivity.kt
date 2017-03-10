@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
 
     startActivity(intentFor<SignInActivity>())
+    finish()
   }
 
 }

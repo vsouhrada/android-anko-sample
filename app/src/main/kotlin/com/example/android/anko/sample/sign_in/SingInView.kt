@@ -3,6 +3,7 @@ package com.example.android.anko.sample.sign_in
 import android.os.Build
 import android.support.v4.content.ContextCompat
 import android.view.Gravity
+import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.LinearLayout
 import com.example.android.anko.sample.R
@@ -23,7 +24,6 @@ class SingInView : AnkoComponent<SignInActivity> {
 
         verticalLayout {
             this.gravity = Gravity.CENTER
-            lparams(width = matchParent, height = matchParent)
 
             scrollView {
 
@@ -34,40 +34,44 @@ class SingInView : AnkoComponent<SignInActivity> {
                         gravity = Gravity.CENTER
                         padding = dip(20)
 
+                        lparams(width = dip(300), height = matchParent) {
+                            this.gravity = Gravity.CENTER
+                            // API >= 16
+                            doFromSdk(version = Build.VERSION_CODES.JELLY_BEAN) {
+                                background = ContextCompat.getDrawable(ctx, android.R.color.white)
+                            }
+                            clipToPadding = false
+                            bottomMargin = dip(16)
+                        }
+
                         val username = editText {
-                            lparams(width = matchParent, height = wrapContent)
                             id = R.id.usernameEditText
                             hintResource = R.string.sign_in_username
-                        }
+
+                        }.lparams(width = matchParent, height = wrapContent)
 
                         val password = editText {
-                            lparams(width = matchParent, height = wrapContent)
                             id = R.id.passwordEditText
                             hintResource = R.string.signIn_password
-                        }
+
+                        }.lparams(width = matchParent, height = wrapContent)
 
                         button {
-                            lparams(width = matchParent, height = wrapContent)
                             id = R.id.signIn_button
                             textResource = R.string.signIn_button
 
                             onClick {
                                 handleOnSignInButtonPressed(username = username.text.toString(), password = password.text.toString())
                             }
-                        }
+
+                        }.lparams(width = matchParent, height = wrapContent)
+
                     }.applyRecursively { view ->
                         when (view) {
                             is EditText -> view.textSize = 24f
                         }
-                    }.lparams(width = dip(300), height = matchParent) {
-                        this.gravity = Gravity.CENTER
-                        // API >= 16
-                        doFromSdk(version = Build.VERSION_CODES.JELLY_BEAN) {
-                            background = ContextCompat.getDrawable(ctx, android.R.color.white)
-                        }
-                        clipToPadding = false
-                        bottomMargin = dip(16)
                     }
+
                 }.lparams(width = matchParent, height = matchParent)
 
             }.lparams(width = matchParent, height = wrapContent)
