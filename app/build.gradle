@@ -38,7 +38,6 @@ dependencies {
 
     // Support
     compile "com.android.support:appcompat-v7:$support_version"
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta5'
     // Kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
     // Anko
